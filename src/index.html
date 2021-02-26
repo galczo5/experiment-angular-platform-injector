@@ -11,7 +11,6 @@
 </head>
 <body>
 <div class="container pt-5">
-  <strong class="p-3">main.ts</strong>
   <pre class="bg-light rounded p-3">
 const platformRef = platformBrowserDynamic();
 const item = localStorage.getItem('provided');
@@ -31,6 +30,16 @@ if (item) {
 platformRef.bootstrapModule(AppModule)
   .catch(err => console.error(err));
   </pre>
+
+  <pre class="bg-light rounded p-3">
+replaceInjector(changeDetectorRef: ChangeDetectorRef, ...providers: Array<StaticProvider>): void {
+  const oldInjector = (changeDetectorRef as any)._lView[9];
+  const injector = PlatformProviderService.getInjector(oldInjector, providers);
+
+  (changeDetectorRef as any)._lView[9] = injector;
+}
+  </pre>
+
   <app-root></app-root>
 </div>
 </body>
